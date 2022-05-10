@@ -8,19 +8,24 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('public/build/')
+    .setOutputPath('public/build/assets/')
     // public path used by the web server to access the output path
-    .setPublicPath('/build')
+    .setPublicPath('/build/assets/')
     // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
+    // .setManifestKeyPrefix('build/assets/')
 
     /*
      * ENTRY CONFIG
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+     * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .configureFilenames({
+                 js: 'js/[name].js',
+                 css: 'css/[name].css',
+                assets: 'fonts/[name].ttf'
+    })
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -56,7 +61,10 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
+
+    // enables PostCss
+    .enablePostCssLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -70,6 +78,17 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+    .copyFiles({
+            from: './assets/images/',
+            to: 'images/[path][name].[ext]',
+            pattern: /\.(png|jpg|jpeg|gif|svg)/,
+        },
+        {
+            from: './assets/fonts/',
+            to: 'fonts/[path][name].[ext]',
+            pattern: /\.(ttf)/,
+        }
+    )
 ;
 
 module.exports = Encore.getWebpackConfig();
