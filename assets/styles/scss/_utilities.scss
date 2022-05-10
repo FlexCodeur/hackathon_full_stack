@@ -1,3 +1,17 @@
+.titleH1,
+.titleH2,
+.titleH3,
+.titleH4,
+.titleH5{
+  font-family: "AVE_M", serif;
+  text-transform: uppercase;
+}
+
+
 .fa-stack {
   color: $primaryColor;
+}
+
+main {
+  height: 200px;
 }

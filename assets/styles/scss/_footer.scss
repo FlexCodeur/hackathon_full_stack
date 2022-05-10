@@ -1,0 +1,52 @@
+.footer__top {
+  padding: 30px 0;
+  @include flex(space-evenly, center);
+  &>img {
+    max-width: 250px;
+    &:nth-child(3) {
+    max-width: 100px;
+    }
+  }
+}
+
+.footer__container {
+  color: white;
+  background: $primaryColor;
+  padding: 90px;
+  @include flex(space-evenly, center);
+  &--items {
+    font-size: 22px;
+    &>h4 {
+      font-family: "AVE_B", serif;
+      margin-bottom: 20px;
+    }
+    &>ul>li {
+      padding-bottom: 15px;
+    }
+    &:nth-child(3) {
+      align-self: flex-start;
+      &>ul {
+        @include flex(space-evenly, center);
+      }
+    }
+  }
+}
+
+.fa-facebook,
+.fa-instagram,
+.fa-linkedin {
+  font-size: 35px;
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
+}
+
+
+
+
+.copyright {
+  padding: 20px;
+  text-align: center;
+  color: white;
+  background: $dark;
+}
