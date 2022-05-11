@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#Home Banner style#}
+    <div class="banner">
+        <div class="banner__card">
+            <h1 class="titleH1">Educateur de santé <span class="green">naturopathe</span> et <span class="orange">iridologue</span></h1>
+            <p>La force qui est en chacun de nous est notre plus grand médecin</p>
+            <p class="author">Hippocrate</p>
+            <a class="btn_secondary href="#">Prendre RDV</a>
+        </div>
+    </div>
+
+    {#Section "Qui suis-je"#}
+    <section class="who__iam">
+        <h2 class="titleH2">qui suis-je</h2>
+        <article class="who__iam--content">
+            <div class="who__img--item"></div>
+            <div class="who__description--item">
+                <p>Je suis Nicolas Guidoux, diplômé de l’Institut
+                    EuroNature à Bordeaux, la 1ère école de Naturopathie française.
+                    Praticien de santé naturopathe et iridologue, affilié à la
+                    Fédération Française de Naturopathie (Fenahman).
+                </p>
+                <p>Adhérent à l’Organisation de la Médecine Naturelle et
+                    de l’Education Sanitaire (Omnes), je suis membre
+                    du Syndicat Professionnel de la Naturopathie (SNP).</p>
+                <a class="btn_secondary" href="#">En savoir +</a>
+            </div>
+        </article>
+    </section>
+    {#End of section "Qui suis-je#}
+
+    {#Section "La naturopathie c'est quoi?"#}
+    <section class="naturopathy">
+        <article class="naturopathy__content">
+            <h2 class="titleH2">La naturopathie c'est quoi ?</h2>
+            <p>Reconnue par l’OMS, la naturopathie est une médecine traditionnelle, au même titre que la médecine
+                traditionnelle chinoise ou indienne. L’approche naturopathique est basée sur des savoirs, et des pratiques
+                ancestrales inspirées d’Hippocrate( IVème siècle avant J-C ).
+            </p>
+            <p>L’approche de la naturopathie est avant tout préventive. Elle permet de favoriser l’auto guérison, ramener
+                l’organisme à l’équilibre, et préserver une parfaite santé à l’aide de techniques naturelles.</p>
+        </article>
+        {#  Absolute item "naturopathy"  #}
+        <div class="naturopathy__extra--item">
+            <p>En naturopathie, nous travaillons sur 3 axes principaux :</p>
+            <p>L’alimentation, l’activité physique et la gestion des émotions.
+                J’utilise également d’autres techniques que je vous laisse découvrir.</p>
+            <a class="btn_primary" href="#">Découvrir</a>
+        </div>
+    </section>
+    {#End of section "La naturopathie c'est quoi?#}
+
+    {#Section citations#}
+    <section class="citations">
+        <div class="citations__author">
+            <div class="citations__author--content">
+                <p>Ceux qui ne consacrent pas un peu de temps chaque jour à
+                    leur santé, consacreront un jour beaucoup de temps
+                    à leur maladie. </p>
+                <p class="author">Kneipp</p>
+            </div>
+            <div class="citations__author--img"></div>
+        </div>
+    </section>
+    {#End of Section citations#}
+
+    {#Section Blog#}
+    <section class="blog">
+        <h2 class="titleH2">Les derniers articles</h2>
+        <div class="blog__content">
+            <div class="blog__content--cards">
+            </div>
+        </div>
+    </section>
+{% endblock body %}

@@ -11,7 +11,6 @@
     <meta property="og:image" content="{{ asset ('build/assets/images/nicolas-guidoux-naturopathe-iridologue-logo.png') }}" />
     <meta property="og:site_name" content="Nicolas Guidoux | Naturopathe - Iridologue" />
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
@@ -21,7 +20,8 @@
         {% include 'header/_navBar.html.twig' %}
     </header>
     <main>
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
     </main>
     <footer>
         {% include 'footer/_footerLogos.html.twig' %}

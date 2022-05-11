@@ -1,10 +1,20 @@
 .footer__top {
   padding: 30px 0;
   @include flex(space-evenly, center);
-  &>img {
-    max-width: 250px;
-    &:nth-child(3) {
-    max-width: 100px;
+  @include respond('mobile') {
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 40px 25px;
+  }
+  & > img {
+    width: 250px;
+    @include respond('mobile') {
+      width: 170px;
+      padding-bottom: 20px;
+    }
+      &:nth-child(3) {
+        max-width: 100px;
     }
   }
 }
@@ -14,14 +24,27 @@
   background: $primaryColor;
   padding: 90px;
   @include flex(space-evenly, center);
+  @include respond('tabPort') {
+    flex-direction: column;
+    align-items: flex-start;
+  }
   &--items {
     font-size: 22px;
+    @include respond('mobile') {
+      font-size: 18px;
+    }
     &>h4 {
-      font-family: "AVE_B", serif;
+      font-weight: 600;
       margin-bottom: 20px;
+      @include respond('mobile') {
+        padding-top: 30px;
+      }
     }
     &>ul>li {
       padding-bottom: 15px;
+      @include respond('mobile') {
+        margin-right: 30px;
+      }
     }
     &:nth-child(3) {
       align-self: flex-start;
@@ -36,6 +59,9 @@
 .fa-instagram,
 .fa-linkedin {
   font-size: 35px;
+  @include respond('mobile') {
+    font-size: 50px;
+  }
   &:not(:last-child) {
     margin-right: 5px;
   }
@@ -49,4 +75,7 @@
   text-align: center;
   color: white;
   background: $dark;
+  @include respond('mobile') {
+    font-size: 11px;
+  }
 }
