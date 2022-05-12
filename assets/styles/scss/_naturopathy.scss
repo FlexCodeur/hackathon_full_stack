@@ -26,6 +26,7 @@
 //Flex container "La naturopathie c'est quoi" pictures + text
 .naturopathy__flex {
   font-size: 28px;
+  padding: 120px 0;
   @include flex(center, center);
   &>img {
     width: 520px;
@@ -59,6 +60,7 @@
 .naturopathy__hygienisme--content {
   font-size: 32px;
   margin: $mxAuto;
+  padding: 80px 0;
   @extend .naturopathy__flex--content;
   width: 90%;
 }
@@ -98,6 +100,34 @@
   .citations {
     background: rgb(246, 246, 246);
     margin: 120px 0;
-    padding: 80px 0;
+    padding: 120px 0;
+  }
+}
+
+// Section "La naturopathie c'est pour qui ?"
+.naturopathy__footer {
+  padding-bottom: 150px;
+  @extend .naturopathy__hygienisme--content;
+  &>.titleH2:before{
+    bottom: -8px;
+    width: 850px;
+  }
+  &>.btn_secondary {
+    width: 15%;
+  }
+}
+.pathology {
+  padding: 30px 0 50px;
+  margin: 0 50px;
+  &__list {
+    margin-top: 50px;
+    @include flex(space-between, center);
+    & ul {
+      position: relative;
+      margin-left: 50px;
+    }
+    & img {
+      width: 50%;
+    }
   }
 }

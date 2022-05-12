@@ -85,3 +85,30 @@ body {
     color: $sand;
   }
 }
+
+// Pathology List-Style
+.row_list {
+  position: relative;
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 55px 0 25px;
+  &:before {
+    content: "\f0a9";
+    font-family: "FontAwesome";
+    position: absolute;
+    color: $green;
+    left: -60px;
+  }
+}
+
+.list_type {
+  margin-bottom: 15px;
+  &.list_type:before {
+    content: "\f138";
+    font-family: "FontAwesome";
+    position: absolute;
+    color: $secondaryColor;
+    left: -50px;
+  }
+}
