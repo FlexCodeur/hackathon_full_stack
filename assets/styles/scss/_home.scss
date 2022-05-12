@@ -26,6 +26,15 @@
         color: $sand;
       }
     }
+    .author:after {
+      content: "\f10e";
+      font-family: 'FontAwesome';
+      font-size: 45px;
+      position: absolute;
+      bottom: -50px;
+      right: -35px;
+      color: $sand;
+    }
   }
 }
 
@@ -147,10 +156,8 @@
     }
     &--img {
       margin-right: 90px;
-      width: 325px;
-      height: 315px;
-      border-radius: 180px;
-      @include background('kneipp.jpg', center, cover, no-repeat);
+      width: 300px;
+      border-radius: 50%;
     }
   }
 }

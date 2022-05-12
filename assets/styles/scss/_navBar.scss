@@ -6,7 +6,7 @@
   padding: 40px;
   background: $primaryColor;
   &>ul {
-    width: 90%;
+    width: 80%;
     margin: $mAuto;
     @include flex(space-evenly, center);
 
