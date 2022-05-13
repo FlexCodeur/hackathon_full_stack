@@ -29,9 +29,15 @@
                     <i class="fas fa-circle fa-stack-2x"></i>
                     <i class="fa-solid fa-user fa-stack-1x fa-inverse"></i>
                 </span>
-                <div class="header__items--content">
-                    <a href="#" class="header__items--title">Connexion</a>
-                </div>
+                {% if app.user %}
+                    <div class="header__items--content">
+                        <a href="{{ path('app_logout') }}" class="header__items--title">déconnexion</a>
+                    </div>
+                {% else %}
+                    <div class="header__items--content">
+                         <a href="{{ path('app_login') }}" class="header__items--title">Connexion</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
