@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -40,11 +42,22 @@ accepté')]
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
+    private $comments;
+
+    #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'users')]
+    private $media;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
     // pour ne mettre que la première lettre en majuscule
     public function mb_ucfirst($firstName): string
     {
         // je mets la chaine de caractère en minuscule
-        $firstName = mb_strtolower($firstName);
+        $this->firstName = mb_strtolower($firstName);
         // je récupère la première lettre de la chaîne
         $firstChar = mb_substr($firstName, 0, 1);
         // je récupère le reste de la chaîne (sans le premier caractère)
@@ -168,5 +181,47 @@ accepté')]
     public function setUsername($username): void
     {
         $this->username = $username;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMedia(): ?Media
+    {
+        return $this->media;
+    }
+
+    public function setMedia(?Media $media): self
+    {
+        $this->media = $media;
+
+        return $this;
     }
 }

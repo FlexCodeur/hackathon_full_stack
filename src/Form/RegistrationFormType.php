@@ -62,22 +62,38 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'attr' => ['placeholder' => 'votre@email.com'],
+                'label' => false,
                 'trim' => true
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'En soumettant ce formulaire, vous acceptez le traitement des données collectées',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Veuillez accepter notre politique de confidentialité',
                     ]),
                 ],
+                'attr' => [
+                    'class' => 'checkbox__rgpd'
+                ]
             ])
             ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmez votre mot de passe'],
+                'first_options'  => [
+                    'label' => false,
+                    'attr' => [
+                        'placeholder' => 'Saisissez votre mot de passe',
+                    ]
+                ],
+                'second_options' => [
+                    'label' => false,
+                    'attr' => [
+                        'placeholder' => 'Confirmez votre mot de passe',
+
+                    ]
+                ],
                 'invalid_message' => 'Les mots de passe saisis ne sont pas identiques',
                 'required' => true,
                 'trim' =>true,
@@ -90,13 +106,13 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
+                         'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                     new Regex([
-                        'pattern' => '#^(?=(.*[A-Z])+)(?=(.*[a-z])+)(?=(.*[\d])+)(?=.*\W)(?!.*\s).{8,16}$#',
-                        'htmlPattern' => '^(?=(.*[A-Z])+)(?=(.*[a-z])+)(?=(.*[\d])+)(?=.*\W)(?!.*\s).{8,16}$',
+                        'pattern' => '#^(?=(.*[A-Z])+)(?=(.*[a-z])+)(?=(.*[\d])+)(?=.*\W)(?!.*\s).{8,100}$#',
+                        'htmlPattern' => '^(?=(.*[A-Z])+)(?=(.*[a-z])+)(?=(.*[\d])+)(?=.*\W)(?!.*\s).{8,100}$',
                         'message' => 'Votre mot de passe doit contenir 8 caractères minimum dont une majuscule, un chiffre et un caractère spécial'
                     ])
                 ],
