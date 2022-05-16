@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[UniqueEntity(fields: ['email'], message: 'Vous disposez déjà d\'un compte 
 avec cet email.')]
 #[UniqueEntity(fields: ['username'], message: 'Ce pseudo existe déjà.')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -45,13 +46,16 @@ accepté')]
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private $comments;
 
-    #[ORM\ManyToOne(targetEntity: Media::class, inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: Media::class, cascade: ["remove"], inversedBy: 'users')]
+    #[ORM\JoinColumn(nullable: true, onDelete:"SET NULL")]
+
     private $media;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
     }
+
 
     // pour ne mettre que la première lettre en majuscule
     public function mb_ucfirst($firstName): string
@@ -223,5 +227,35 @@ accepté')]
         $this->media = $media;
 
         return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized);
+    }
+
+    /*We get firstName and lastName variables to join in unique column on
+    Dashboard
+    */
+    public function getfullName()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 }
