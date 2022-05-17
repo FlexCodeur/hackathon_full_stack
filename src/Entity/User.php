@@ -20,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', nullable: false)]
     private $id;
 
     #[ORM\Column(type: 'string')]
@@ -46,13 +46,19 @@ accepté')]
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private $comments;
 
-    #[ORM\ManyToOne(targetEntity: Media::class, cascade: ["remove"], inversedBy: 'users')]
+    #[ORM\ManyToOne(targetEntity: Media::class, cascade: ["remove"],
+        inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: true, onDelete:"SET NULL")]
     private $media;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->username;
     }
 
 
