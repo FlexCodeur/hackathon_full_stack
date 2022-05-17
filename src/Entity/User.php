@@ -48,7 +48,6 @@ accepté')]
 
     #[ORM\ManyToOne(targetEntity: Media::class, cascade: ["remove"], inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: true, onDelete:"SET NULL")]
-
     private $media;
 
     public function __construct()
