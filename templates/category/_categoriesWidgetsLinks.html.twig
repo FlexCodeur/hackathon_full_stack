@@ -1,0 +1,3 @@
+{% set category_show = path('app_category_show', {'slug': category.slug}) %}
+
+<a href="{{category_show}}">{{ category.slug }}</a>

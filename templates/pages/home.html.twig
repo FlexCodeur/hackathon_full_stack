@@ -71,8 +71,9 @@
         <h2 class="titleH2">Les derniers articles</h2>
         <div class="blog__content">
             <div class="blog__content--cards">
-                {% include 'article/_previewArticlesList.html.twig'%}
+                {%  include 'article/_previewArticlesList.html.twig' %}
             </div>
         </div>
+        <a class="btn_secondary" href="{{  path('app_article_index') }}">Voir le blog</a>
     </section>
 {% endblock body %}

@@ -7,9 +7,17 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Core\Security;
 
 class AdminSubscriber implements EventSubscriberInterface
 {
+
+    private $security;
+
+    public function __construct( Security $security)
+    {
+        $this->security = $security;
+    }
 
     #[ArrayShape([BeforeEntityPersistedEvent::class => "string[]", BeforeEntityUpdatedEvent::class => "string[]"])]
     public static function getSubscribedEvents(): array
@@ -27,6 +35,9 @@ class AdminSubscriber implements EventSubscriberInterface
         if(!$entity instanceof TimeInterface) {
             return;
         }
+
+        $user = $this->security->getUser();
+        $entity->setUser($user);
 
         $entity->setCreatedAt(new \DateTime());
     }

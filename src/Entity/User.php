@@ -20,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer', nullable: false)]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
     #[ORM\Column(type: 'string')]
@@ -51,9 +51,13 @@ accepté')]
     #[ORM\JoinColumn(nullable: true, onDelete:"SET NULL")]
     private $media;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
+    private $articles;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function __toString(): string
@@ -222,6 +226,7 @@ accepté')]
         return $this;
     }
 
+
     public function getMedia(): ?Media
     {
         return $this->media;
@@ -263,4 +268,35 @@ accepté')]
     {
         return $this->getFirstName() . ' ' . $this->getLastName();
     }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUser() === $this) {
+                $article->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
