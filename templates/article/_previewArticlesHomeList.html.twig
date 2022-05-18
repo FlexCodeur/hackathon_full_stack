@@ -1,5 +1,6 @@
-{% set maxArticles = 4 %}
+{% set maxArticles = 3 %}
+{#{% set articles = [articles: articles.title, articles: articles.createdAt] %}#}
 
-{% for article in articles | slice(0, maxArticles)  %}
+{% for article in articles | slice(0, maxArticles) | sort((a,b)=>b.createdAt > a.createdAt) %}
     {% include 'article/_previewArticlesHome.html.twig' %}
 {% endfor %}

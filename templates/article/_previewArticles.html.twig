@@ -5,7 +5,7 @@
         {% if article.media != null %}
             <img src="{{url('home') }}build/assets/images/{{ article.media.fileName }}" alt="{{ article.media.alt }}">
         {% else %}
-            <img src="{{ asset('build/assets/images/no-image.png') }}" alt="image non disponible">
+            <img src="{{ asset('build/assets/images/no-image.jpg') }}" alt="image non disponible">
         {% endif %}
         <div class="news_item_content">
             <p class="date_news">Publié le : {{ article.createdAt | date ('d-m-y') }}</p>

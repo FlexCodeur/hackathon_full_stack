@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% block meta %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="description" content="Nicolas Guidoux Naturopathe, Iridologue à Ambarès-et-Lagrave près de Bordeaux. Consultations par visio-conférence ou en cabinet, vous pouvez prendre RDV en ligne ou par téléphone."/>
-    <meta property="og:title" content= />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://127.0.0.1:8000/" />
-    <meta property="og:image" content="{{ asset ('build/assets/images/nicolas-guidoux-naturopathe-iridologue-logo.png') }}" />
-    <meta property="og:site_name" content="Nicolas Guidoux | Naturopathe - Iridologue" />
+    {% endblock meta%}
+    <title>{% block title %}{% endblock %} | Nicolas Guidoux Naturopathe</title>
+
     {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
@@ -30,6 +28,7 @@
         {% include 'footer/_footer.html.twig' %}
     </footer>
     {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </body>

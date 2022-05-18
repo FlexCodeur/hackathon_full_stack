@@ -24,11 +24,18 @@ class CommentType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez saisir votre commentaire.'
                     ])
+                ],
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Commenter l\'article',
+                    'class' => 'form-control'
                 ]
             ])
             ->add('article', HiddenType::class)
             ->add('user', HiddenType::class)
-            ->add('publier', SubmitType::class)
+            ->add('publier', SubmitType::class, [
+                'attr' => ['class' => 'btn_primary']
+            ])
         ;
 
 //        $builder->get('article')

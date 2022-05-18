@@ -6,7 +6,7 @@
     font-weight: 600;
     padding: 50px 80px 80px;
     border-radius: 25px;
-    @include containerSize(30%, 0 125px);
+    @include containerSize(40%, 0 125px);
     &>h1 {
       text-align: center;
       line-height: 70px;
@@ -115,7 +115,7 @@
   color: $fontColor;
   background-color: $grayLight;
   padding: 140px 80px 80px;
-  width: 33%;
+  width: 45%;
   border-radius: 40px;
   bottom: 0px;
   left: 50%;

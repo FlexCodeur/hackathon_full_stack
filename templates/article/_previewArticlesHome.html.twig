@@ -14,6 +14,11 @@
                 </h3>
                 <p>{{ article.content[:150] | raw }}</p>
                 <a class="date_news" href="{{ path('app_article_show', {slug: article.slug}) }}">LIRE LA SUITE</a>
+                <div class="comments">
+                    <a href="{{ path('app_article_show', {slug: article.slug}) }}">
+                        <span>{{article.comments|length}} commentaires(s)</span>
+                    </a>
+                </div>
             </div>
         </article>
     </div>

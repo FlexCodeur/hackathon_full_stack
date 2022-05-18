@@ -11,20 +11,25 @@
             <div class="article__flex">
                 <img src="/build/assets/images/{{ article.media.fileName }}" alt="{{ article.media.alt }}">
                 <div class="article__flex--content">
-
                     <p>{{ article.content | raw }}</p>
                 </div>
             </div>
-
         </article>
     </section>
-
-
-
+{#Comments section#}
     <div class="comments">
-        <h4><span>{{article.comments|length}} commentaires(s)</span></h4>
-    </div>
-    <div class="form__content">
-        {{ form(commentForm) }}
+        <h4 class="titleH4"><span>{{article.comments|length}} commentaires(s)</span></h4>
+        <div class="form__content">
+            {% for comment in article.comments %}
+                <div class="user__comment">
+                    <p>Posté le: {{ comment.createdAt | date('d-m-y') }}</p>
+                    <p class="user__comment--username">Par: {{ comment.user.username}}</p>
+                    <p>{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+            {%if app.user%}
+                {{ form(commentForm) }}
+            {% endif %}
+        </div>
     </div>
 {% endblock %}
