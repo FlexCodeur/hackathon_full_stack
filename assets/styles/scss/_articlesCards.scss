@@ -1,13 +1,15 @@
 // Article section
 .blog__content {
   .blog__content--cards {
-    @include flex(center, strech);
+    @include flex(center, stretch, $wrap: wrap);
   }
 }
 .actualites {
   border: $borderSolidDark;
-  margin: 0 40px;
+  margin: 0 20px 40px;
   padding: 0 0 40px;
+  width: 33%;
+
   @include respond("mobile") {
     flex-direction: column;
     padding: 0;
@@ -41,7 +43,6 @@
     }
   }
   .news_items {
-    flex-basis: 25%;
     &:not(:last-child) {
       margin-right: 40px;
       @include respond("mobile") {
@@ -67,7 +68,7 @@
       line-height: 34px;
       .date_news {
         font-size: 15px;
-        color: $grey;
+        color: $primaryColor;
         font-weight: 600;
         padding-bottom: 5px;
 

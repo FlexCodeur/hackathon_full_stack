@@ -3,41 +3,23 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <section class="article">
+{#        <a class="returnLink" href="{{ path('app_category_show', {slug: category.slug}) }}">revenir à la liste des articles</a>#}
+        <article>
+            <h1 class="titleH1">{{ article.title }}</h1>
+            <p class="publishedAt">Publié le : {{ article.createdAt | date('d-m-y') }}</p>
+            <div class="article__flex">
+                <img src="/build/assets/images/{{ article.media.fileName }}" alt="{{ article.media.alt }}">
+                <div class="article__flex--content">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ article.slug }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ article.description }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content |raw}}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <img src="/build/assets/images/{{ article.media.fileName }}" alt="{{ article.media.alt }}">
+                    <p>{{ article.content | raw }}</p>
+                </div>
+            </div>
+
+        </article>
+    </section>
+
+
 
     <div class="comments">
         <h4><span>{{article.comments|length}} commentaires(s)</span></h4>

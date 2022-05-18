@@ -1,6 +1,19 @@
-
-{% block title %}Article index{% endblock %}
+{% block title %}{% endblock %}
 
 {% block body %}
+    <div class="category__banner">
+        <img src="{{ url('home') }}build/assets/images/{{ category.media.fileName }}" alt="{{ category.media.alt }}">
+        <div class="category__banner--title">
+            <h1>{{ category.label}}</h1>
+        </div>
+    </div>
 
+    <section class="blog__list">
+        <h2 class="titleH2">Les articles</h2>
+        <div class="blog__content">
+            <div class="blog__content--cards">
+                {%  include 'article/_previewArticlesList.html.twig' %}
+            </div>
+        </div>
+    </section>
 {% endblock %}

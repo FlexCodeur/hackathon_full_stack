@@ -1,0 +1,5 @@
+{% set maxArticles = 4 %}
+
+{% for article in articles | slice(0, maxArticles)  %}
+    {% include 'article/_previewArticlesHome.html.twig' %}
+{% endfor %}
